@@ -17,5 +17,7 @@ public interface UserService {
      * 注册
      * @param user
      */
-    void reg(EasybuyUser user);
+    String reg(EasybuyUser user);
+
+    EasybuyUser queryByLoginName(String loginName);
 }

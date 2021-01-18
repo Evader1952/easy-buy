@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme()+"://" +request.getServerName()+":" +request.getServerPort()+path+"/" ;
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<base href="<%=basePath%>" >
+<base href="<%=basePath%>">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>注册</title>
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
     <script type="text/javascript" src="js/jquery-1.11.1.min_044d0927.js"></script>
     <script type="text/javascript" src="js/jquery.bxslider_e88acd1b.js"></script>
 
@@ -46,7 +46,7 @@
                 <a href="reg.jsp" style="color:#ff4e00;">免费注册</a>&nbsp; </span>
             <span class="fl">|&nbsp;关注我们：</span>
             <span class="s_sh"><a href="#" class="sh1">新浪</a><a href="#" class="sh2">微信</a></span>
-            <span class="fr">|&nbsp;<a href="#">手机版&nbsp;<img src="images/s_tel.png" align="absmiddle" /></a></span>
+            <span class="fr">|&nbsp;<a href="#">手机版&nbsp;<img src="images/s_tel.png" align="absmiddle"/></a></span>
         </span>
     </div>
 </div>
@@ -54,12 +54,12 @@
 <!--Begin Login Begin-->
 <div class="log_bg">
     <div class="top">
-        <div class="logo"><a href="Index.html"><img src="images/logo.png" /></a></div>
+        <div class="logo"><a href="Index.html"><img src="images/logo.png"/></a></div>
     </div>
     <div class="regist">
-        <div class="log_img"><img src="images/l_img.png" width="611" height="425" /></div>
+        <div class="log_img"><img src="images/l_img.png" width="611" height="425"/></div>
         <div class="reg_c">
-            <form action="/user/reg" method="post">
+            <form method="post" id="regForm" class="regForm">
                 <table border="0" style="width:420px; font-size:14px; margin-top:20px;" cellspacing="0" cellpadding="0">
                     <tr height="50" valign="top">
                         <td width="95">&nbsp;</td>
@@ -82,17 +82,17 @@
                     </tr>
                     <tr height="50">
                         <td align="right"><font color="#ff4e00">*</font>&nbsp;真实姓名 &nbsp;</td>
-                        <td><input type="text" value="" class="l_email" name="username" /></td>
+                        <td><input type="text" value="" class="l_email" name="username"/></td>
                     </tr>
                     <tr height="50">
                         <td align="right">性别 &nbsp;</td>
-                        <td><input type="radio" value="1"  name="sex"/>男
-                            <input type="radio" value="0"  name="sex"/>女
+                        <td><input type="radio" value="1" name="sex"/>男
+                            <input type="radio" value="0" name="sex"/>女
                         </td>
                     </tr>
                     <tr height="50">
                         <td align="right"><font color="#ff4e00">*</font>&nbsp;手机 &nbsp;</td>
-                        <td><input type="text" value="" class="l_tel" name="mobile" /></td>
+                        <td><input type="text" value="" class="l_tel" name="mobile"/></td>
                     </tr>
                     <tr height="50">
                         <td align="right">邮箱 &nbsp;</td>
@@ -105,7 +105,7 @@
 
                     <tr height="60">
                         <td>&nbsp;</td>
-                        <td><input type="submit" value="立即注册" class="log_btn" /></td>
+                        <td><input type="button" value="立即注册" class="log_btn"/></td>
                     </tr>
                 </table>
             </form>
@@ -116,9 +116,38 @@
 <!--Begin Footer Begin-->
 <div class="btmbg">
     <div class="btm">
-        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
-        <img src="images/b_1.gif" width="98" height="33" /><img src="images/b_2.gif" width="98" height="33" /><img src="images/b_3.gif" width="98" height="33" /><img src="images/b_4.gif" width="98" height="33" /><img src="images/b_5.gif" width="98" height="33" /><img src="images/b_6.gif" width="98" height="33" />
+        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical
+        Support: Dgg Group <br/>
+        <img src="images/b_1.gif" width="98" height="33"/><img src="images/b_2.gif" width="98" height="33"/><img
+            src="images/b_3.gif" width="98" height="33"/><img src="images/b_4.gif" width="98" height="33"/><img
+            src="images/b_5.gif" width="98" height="33"/><img src="images/b_6.gif" width="98" height="33"/>
     </div>
 </div>
 </body>
+
+<script type="text/javascript" src="js/num.js">
+    var jq = jQuery.noConflict();
+</script>
+<script>
+
+    jq("body").on("click", ".log_btn", function () {
+        var formDate = jq('#regForm').serialize();
+        jq.ajax({
+            type: 'post',
+            url: '${pageContext.request.contextPath}/user/reg',
+            dataType: 'json',
+            data: formDate,
+            success: function (response) {
+                if (response.code === "20000") {
+                    location.href = ""
+                } else {
+                    alert(response.msg)
+                }
+            }
+        })
+
+    });
+
+
+</script>
 </html>

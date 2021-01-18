@@ -1,6 +1,10 @@
 package com.ebuy.pojo;
 
-public class EasybuyUser {
+import com.ebuy.model.Param;
+import lombok.Data;
+
+@Data
+public class EasybuyUser  extends Param {
     private Integer id;
 
     private String loginname;
@@ -19,75 +23,30 @@ public class EasybuyUser {
 
     private Integer type;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getLoginname() {
-        return loginname;
-    }
-
-    public void setLoginname(String loginname) {
-        this.loginname = loginname == null ? null : loginname.trim();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public String getIdentitycode() {
-        return identitycode;
-    }
-
-    public void setIdentitycode(String identitycode) {
-        this.identitycode = identitycode == null ? null : identitycode.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
+    public   String check(){
+        if(checkNull(loginname)){
+            return "请填写登录用户名";
+        }
+        if(checkNull(password)){
+            return "请填写密码  ";
+        }
+        if(checkNull(username)){
+            return "请填写真实姓名";
+        }
+        if(checkNull(sex)){
+            return "请填写性别";
+        }
+        if(checkNull(identitycode)){
+            return "请填写身份证号";
+        }
+        if(checkNull(email)){
+            return "请填写邮箱";
+        }
+        if(checkNull(mobile)){
+            return "请填写手机号";
+        }
+        return  null;
     }
 }

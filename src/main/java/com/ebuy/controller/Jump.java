@@ -16,4 +16,9 @@ public class Jump {
     public String goCartList(){
         return "cartList";
     }
+
+    @RequestMapping("Member")
+    public String goMember(){
+        return "Member";
+    }
 }
