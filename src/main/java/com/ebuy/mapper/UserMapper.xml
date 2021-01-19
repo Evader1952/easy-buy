@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ebuy.mapper.UserMapper">
+
+    <resultMap type="com.ebuy.pojo.User" id="UserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="identityCode" column="identity_code" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserMap">
+        select
+          id, login_name, user_name, password, sex, identity_code, email, mobile, type, create_time
+        from easybuy.user
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserMap">
+        select
+          id, login_name, user_name, password, sex, identity_code, email, mobile, type, create_time
+        from easybuy.user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserMap">
+        select
+        id, login_name, user_name, password, sex, identity_code, email, mobile, type, create_time
+        from easybuy.user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="loginName != null and loginName != ''">
+                and login_name = #{loginName}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+            <if test="identityCode != null and identityCode != ''">
+                and identity_code = #{identityCode}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and mobile = #{mobile}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.user(login_name, user_name, password, sex, identity_code, email, mobile, type, create_time)
+        values (#{loginName}, #{userName}, #{password}, #{sex}, #{identityCode}, #{email}, #{mobile}, #{type}, #{createTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.user(login_name, user_name, password, sex, identity_code, email, mobile, type, create_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.loginName}, #{entity.userName}, #{entity.password}, #{entity.sex}, #{entity.identityCode},
+            #{entity.email}, #{entity.mobile}, #{entity.type}, #{entity.createTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.user(login_name, user_name, password, sex, identity_code, email, mobile, type, create_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.loginName}, #{entity.userName}, #{entity.password}, #{entity.sex}, #{entity.identityCode},
+            #{entity.email}, #{entity.mobile}, #{entity.type}, #{entity.createTime})
+        </foreach>
+        on duplicate key update
+        login_name = values(login_name) , user_name = values(user_name) , password = values(password) , sex =
+        values(sex) , identity_code = values(identity_code) , email = values(email) , mobile = values(mobile) , type =
+        values(type) , create_time = values(create_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update easybuy.user
+        <set>
+            <if test="loginName != null and loginName != ''">
+                login_name = #{loginName},
+            </if>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="identityCode != null and identityCode != ''">
+                identity_code = #{identityCode},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from easybuy.user where id = #{id}
+    </delete>
+
+</mapper>

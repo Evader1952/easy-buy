@@ -1,9 +1,8 @@
 package com.ebuy.controller;
 
-import com.ebuy.mapper.EasybuyProductMapper;
-import com.ebuy.pojo.EasybuyProduct;
-import com.ebuy.pojo.EasybuyUser;
-import com.ebuy.pojo.TbItem;
+import com.ebuy.model.web.TbItem;
+import com.ebuy.pojo.Product;
+import com.ebuy.pojo.User;
 import com.ebuy.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,11 +33,11 @@ public class CartController {
         //标识符:判断是否存在此商品
         boolean flag = false;
         //通过id查询商品信息
-        EasybuyProduct product = productService.getById(pid);
+        Product product = productService.queryById(pid);
         //从session中获取购物车信息
         List<TbItem> shopcart = (List<TbItem>) session.getAttribute("shopcart");
         //获取用户信息
-        EasybuyUser user = (EasybuyUser) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         if (user == null) {
             //如果用户为空,则直接返回,让用户登录
             throw new RuntimeException("用户未登录");
@@ -63,7 +62,7 @@ public class CartController {
             TbItem item = new TbItem();
             item.setName(product.getName());
             item.setProductId(product.getId());
-            item.setFileName(product.getFilename());
+            item.setFileName(product.getFileName());
             item.setCount(1);
             item.setPrice(product.getPrice());
             //把商品加入集合

@@ -35,6 +35,7 @@
     <script type="text/javascript" src="js/tban.js"></script>
 
     <script type="text/javascript" src="js/lrscroll_1.js"></script>
+    <script type="text/javascript" src="/ajax/ajaxUtil.js"></script>
 </head>
 <body>
 <!--Begin Header Begin-->
@@ -132,17 +133,11 @@
 
     jq("body").on("click", ".log_btn", function () {
         var formDate = jq('#regForm').serialize();
-        jq.ajax({
-            type: 'post',
-            url: '${pageContext.request.contextPath}/user/reg',
-            dataType: 'json',
-            data: formDate,
-            success: function (response) {
-                if (response.code === "20000") {
-                    location.href = ""
-                } else {
-                    alert(response.msg)
-                }
+        ajaxPost("/user/reg",formDate,function (response) {
+            if (response.code === "20000") {
+                location.href = ""
+            } else {
+                alert(response.msg)
             }
         })
 

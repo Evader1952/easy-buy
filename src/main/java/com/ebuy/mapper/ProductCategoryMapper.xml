@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ebuy.mapper.ProductCategoryMapper">
+
+    <resultMap type="com.ebuy.pojo.ProductCategory" id="ProductCategoryMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="iconClass" column="icon_class" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ProductCategoryMap">
+        select
+          id, name, parent_id, type, icon_class
+        from easybuy.product_category
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProductCategoryMap">
+        select
+          id, name, parent_id, type, icon_class
+        from easybuy.product_category
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ProductCategoryMap">
+        select
+        id, name, parent_id, type, icon_class
+        from easybuy.product_category
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="iconClass != null and iconClass != ''">
+                and icon_class = #{iconClass}
+            </if>
+        </where>
+        <if test="orderBy !=null and orderBy != ''">
+            order by ${orderBy}
+            <if test="sort !=null and sort != ''">
+                ${sort}
+            </if>
+            <if test="sort ==null or sort == ''">
+                desc
+            </if>
+        </if>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.product_category(name, parent_id, type, icon_class)
+        values (#{name}, #{parentId}, #{type}, #{iconClass})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.product_category(name, parent_id, type, icon_class)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.parentId}, #{entity.type}, #{entity.iconClass})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.product_category(name, parent_id, type, icon_class)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.parentId}, #{entity.type}, #{entity.iconClass})
+        </foreach>
+        on duplicate key update
+        name = values(name) , parent_id = values(parent_id) , type = values(type) , icon_class = values(icon_class)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update easybuy.product_category
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="iconClass != null and iconClass != ''">
+                icon_class = #{iconClass},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from easybuy.product_category where id = #{id}
+    </delete>
+
+</mapper>

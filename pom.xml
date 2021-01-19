@@ -81,45 +81,45 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>4.1.7.RELEASE</version>
+      <version>4.3.19.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
-      <version>4.1.7.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>4.1.7.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <!-- 2)Spring DAO层 -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.1.7.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
-      <version>4.1.7.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <!-- 3)Spring web -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>4.1.7.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>4.1.7.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <!-- 4)Spring test -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>4.1.7.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>com.github.pagehelper</groupId>
@@ -129,7 +129,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.16.12</version>
+      <version>1.18.6</version>
     </dependency>
     <dependency>
       <groupId>com.alibaba</groupId>

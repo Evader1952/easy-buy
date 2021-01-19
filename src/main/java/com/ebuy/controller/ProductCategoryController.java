@@ -1,15 +1,14 @@
 package com.ebuy.controller;
 
-import com.ebuy.pojo.EasybuyProduct;
-import com.ebuy.pojo.EasybuyProductCategory;
-import com.ebuy.service.CategoryService;
+import com.ebuy.pojo.Product;
+import com.ebuy.pojo.ProductCategory;
+import com.ebuy.service.ProductCategoryService;
 import com.ebuy.service.ProductService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,7 +20,7 @@ import java.util.List;
 public class ProductCategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private ProductCategoryService productCategoryService;
 
     @Autowired
     private ProductService productService;
@@ -33,7 +32,7 @@ public class ProductCategoryController {
     @RequestMapping("/initData")
     public String initData(Model model, HttpSession session){
         //初始化类别信息
-        List<EasybuyProductCategory> categoryList = categoryService.getCategories();
+        List<ProductCategory> categoryList = productCategoryService.getCategories();
         session.setAttribute("categoryList",categoryList);
         return "index";
     }
@@ -49,11 +48,13 @@ public class ProductCategoryController {
                                  @RequestParam(value = "pageNow",defaultValue = "1")Integer pageNow ,
                                  Model model){
         PageHelper.startPage(pageNow,20);
-        List<EasybuyProduct> products = productService.getProducts(pid);
-        PageInfo<EasybuyProduct> pageInfo = new PageInfo<>(products);
+        List<Product> products = productService.getProducts(pid);
+        PageInfo<Product> pageInfo = new PageInfo<>(products);
         model.addAttribute("pageInfo",pageInfo);
         return "productList";
     }
+
+
 
     /**
      * 根据商品编号查询
@@ -61,7 +62,7 @@ public class ProductCategoryController {
      */
     @RequestMapping("/getByPid")
     public String getByPid(Integer pid,Model model){
-        EasybuyProduct product = productService.getById(pid);
+       Product product = productService.queryById(pid);
         model.addAttribute("product",product);
         return "product";
     }

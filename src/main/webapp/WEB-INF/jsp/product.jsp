@@ -49,19 +49,19 @@
         <div class="content">
 
             <div id="tsShopContainer">
-                <div id="tsImgS"><a href="images/${product.filename}" title="Images" class="MagicZoom" id="MagicZoom"><img src="images/${product.filename}" width="390" height="390" /></a></div>
+                <div id="tsImgS"><a href="images/${product.fileName}" title="Images" class="MagicZoom" id="MagicZoom"><img src="images/${product.fileName}" width="390" height="390" /></a></div>
                 <div id="tsPicContainer">
                     <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
                     <div id="tsImgSCon">
                         <ul>
-                            <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="images/${product.filename}" tsImgS="images/${product.filename}" width="79" height="79" /></li>
-                            <li onclick="showPic(1)" rel="MagicZoom"><img src="images/${product.filename}" tsImgS="images/${product.filename}" width="79" height="79" /></li>
-                            <li onclick="showPic(2)" rel="MagicZoom"><img src="images/${product.filename}" tsImgS="images/${product.filename}" width="79" height="79" /></li>
-                            <li onclick="showPic(3)" rel="MagicZoom"><img src="images/${product.filename}" tsImgS="images/${product.filename}" width="79" height="79" /></li>
-                            <li onclick="showPic(4)" rel="MagicZoom"><img src="images/${product.filename}" tsImgS="images/${product.filename}" width="79" height="79" /></li>
-                            <li onclick="showPic(5)" rel="MagicZoom"><img src="images/${product.filename}" tsImgS="images/${product.filename}" width="79" height="79" /></li>
-                            <li onclick="showPic(6)" rel="MagicZoom"><img src="images/${product.filename}" tsImgS="images/${product.filename}" width="79" height="79" /></li>
-                            <li onclick="showPic(7)" rel="MagicZoom"><img src="images/${product.filename}" tsImgS="images/${product.filename}" width="79" height="79" /></li>
+                            <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="images/${product.fileName}" tsImgS="images/${product.fileName}" width="79" height="79" /></li>
+                            <li onclick="showPic(1)" rel="MagicZoom"><img src="images/${product.fileName}" tsImgS="images/${product.fileName}" width="79" height="79" /></li>
+                            <li onclick="showPic(2)" rel="MagicZoom"><img src="images/${product.fileName}" tsImgS="images/${product.fileName}" width="79" height="79" /></li>
+                            <li onclick="showPic(3)" rel="MagicZoom"><img src="images/${product.fileName}" tsImgS="images/${product.fileName}" width="79" height="79" /></li>
+                            <li onclick="showPic(4)" rel="MagicZoom"><img src="images/${product.fileName}" tsImgS="images/${product.fileName}" width="79" height="79" /></li>
+                            <li onclick="showPic(5)" rel="MagicZoom"><img src="images/${product.fileName}" tsImgS="images/${product.fileName}" width="79" height="79" /></li>
+                            <li onclick="showPic(6)" rel="MagicZoom"><img src="images/${product.fileName}" tsImgS="images/${product.fileName}" width="79" height="79" /></li>
+                            <li onclick="showPic(7)" rel="MagicZoom"><img src="images/${product.fileName}" tsImgS="images/${product.fileName}" width="79" height="79" /></li>
                         </ul>
                     </div>
                     <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>

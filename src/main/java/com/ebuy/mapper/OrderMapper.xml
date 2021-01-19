@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ebuy.mapper.OrderMapper">
+
+    <resultMap type="com.ebuy.pojo.Order" id="OrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="serialNumber" column="serial_number" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
+        <result property="userAddress" column="user_address" jdbcType="VARCHAR"/>
+        <result property="cost" column="cost" jdbcType="OTHER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderMap">
+        select
+          id, serial_number, user_id, login_name, user_address, cost, create_time, status, type
+        from easybuy.order
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderMap">
+        select
+          id, serial_number, user_id, login_name, user_address, cost, create_time, status, type
+        from easybuy.order
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OrderMap">
+        select
+        id, serial_number, user_id, login_name, user_address, cost, create_time, status, type
+        from easybuy.order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="serialNumber != null and serialNumber != ''">
+                and serial_number = #{serialNumber}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="loginName != null and loginName != ''">
+                and login_name = #{loginName}
+            </if>
+            <if test="userAddress != null and userAddress != ''">
+                and user_address = #{userAddress}
+            </if>
+            <if test="cost != null">
+                and cost = #{cost}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.order(serial_number, user_id, login_name, user_address, cost, create_time, status, type)
+        values (#{serialNumber}, #{userId}, #{loginName}, #{userAddress}, #{cost}, #{createTime}, #{status}, #{type})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.order(serial_number, user_id, login_name, user_address, cost, create_time, status, type)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.serialNumber}, #{entity.userId}, #{entity.loginName}, #{entity.userAddress}, #{entity.cost},
+            #{entity.createTime}, #{entity.status}, #{entity.type})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.order(serial_number, user_id, login_name, user_address, cost, create_time, status, type)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.serialNumber}, #{entity.userId}, #{entity.loginName}, #{entity.userAddress}, #{entity.cost},
+            #{entity.createTime}, #{entity.status}, #{entity.type})
+        </foreach>
+        on duplicate key update
+        serial_number = values(serial_number) , user_id = values(user_id) , login_name = values(login_name) ,
+        user_address = values(user_address) , cost = values(cost) , create_time = values(create_time) , status =
+        values(status) , type = values(type)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update easybuy.order
+        <set>
+            <if test="serialNumber != null and serialNumber != ''">
+                serial_number = #{serialNumber},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="loginName != null and loginName != ''">
+                login_name = #{loginName},
+            </if>
+            <if test="userAddress != null and userAddress != ''">
+                user_address = #{userAddress},
+            </if>
+            <if test="cost != null">
+                cost = #{cost},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from easybuy.order where id = #{id}
+    </delete>
+
+</mapper>

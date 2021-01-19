@@ -33,6 +33,9 @@ public class Response<T> implements Serializable{
     public static <T> Response<T> ok(T data){
         return response(ResponseCode.SUCCESS, ResponseMsg.SUCCESS,data);
     }
+    public static <T> Response<T> ok(String msg){
+        return response(ResponseCode.SUCCESS, msg,null);
+    }
     public static <T> Response<T> ok(String msg,T data){
         return response(ResponseCode.SUCCESS,msg,data);
     }

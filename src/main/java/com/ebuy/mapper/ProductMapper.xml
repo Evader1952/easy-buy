@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ebuy.mapper.ProductMapper">
+
+    <resultMap type="com.ebuy.pojo.Product" id="ProductMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="OTHER"/>
+        <result property="stock" column="stock" jdbcType="INTEGER"/>
+        <result property="categoryLevel1Id" column="category_level1_Id" jdbcType="INTEGER"/>
+        <result property="categoryLevel2Id" column="category_level2_Id" jdbcType="INTEGER"/>
+        <result property="categoryLevel3Id" column="category_level3_Id" jdbcType="INTEGER"/>
+        <result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ProductMap">
+        select
+          id, name, description, price, stock, category_level1_Id, category_level2_Id, category_level3_Id, file_name, is_delete
+        from easybuy.product
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProductMap">
+        select
+          id, name, description, price, stock, category_level1_Id, category_level2_Id, category_level3_Id, file_name, is_delete
+        from easybuy.product
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ProductMap">
+        select
+        id, name, description, price, stock, category_level1_Id, category_level2_Id, category_level3_Id, file_name,
+        is_delete
+        from easybuy.product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="stock != null">
+                and stock = #{stock}
+            </if>
+            <if test="categoryLevel1Id != null">
+                and category_level1_Id = #{categoryLevel1Id}
+            </if>
+            <if test="categoryLevel2Id != null">
+                and category_level2_Id = #{categoryLevel2Id}
+            </if>
+            <if test="categoryLevel3Id != null">
+                and category_level3_Id = #{categoryLevel3Id}
+            </if>
+            <if test="fileName != null and fileName != ''">
+                and file_name = #{fileName}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.product(name, description, price, stock, category_level1_Id, category_level2_Id, category_level3_Id, file_name, is_delete)
+        values (#{name}, #{description}, #{price}, #{stock}, #{categoryLevel1Id}, #{categoryLevel2Id}, #{categoryLevel3Id}, #{fileName}, #{isDelete})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.product(name, description, price, stock, category_level1_Id, category_level2_Id,
+        category_level3_Id, file_name, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.description}, #{entity.price}, #{entity.stock}, #{entity.categoryLevel1Id},
+            #{entity.categoryLevel2Id}, #{entity.categoryLevel3Id}, #{entity.fileName}, #{entity.isDelete})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into easybuy.product(name, description, price, stock, category_level1_Id, category_level2_Id,
+        category_level3_Id, file_name, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.description}, #{entity.price}, #{entity.stock}, #{entity.categoryLevel1Id},
+            #{entity.categoryLevel2Id}, #{entity.categoryLevel3Id}, #{entity.fileName}, #{entity.isDelete})
+        </foreach>
+        on duplicate key update
+        name = values(name) , description = values(description) , price = values(price) , stock = values(stock) ,
+        category_level1_Id = values(category_level1_Id) , category_level2_Id = values(category_level2_Id) ,
+        category_level3_Id = values(category_level3_Id) , file_name = values(file_name) , is_delete = values(is_delete)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update easybuy.product
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="stock != null">
+                stock = #{stock},
+            </if>
+            <if test="categoryLevel1Id != null">
+                category_level1_Id = #{categoryLevel1Id},
+            </if>
+            <if test="categoryLevel2Id != null">
+                category_level2_Id = #{categoryLevel2Id},
+            </if>
+            <if test="categoryLevel3Id != null">
+                category_level3_Id = #{categoryLevel3Id},
+            </if>
+            <if test="fileName != null and fileName != ''">
+                file_name = #{fileName},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from easybuy.product where id = #{id}
+    </delete>
+
+</mapper>

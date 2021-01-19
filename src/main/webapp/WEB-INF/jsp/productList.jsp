@@ -122,7 +122,7 @@
 
                     <li>
 
-                        <div class="img"><a href="/index/getByPid?pid=${p.id}"><img src="images/${p.filename}" width="210" height="185" /></a></div>
+                        <div class="img"><a href="/index/getByPid?pid=${p.id}"><img src="images/${p.fileName}" width="210" height="185" /></a></div>
                         <div class="price">
                             <font>￥<span>${p.price}</span></font> &nbsp; ${p.stock}
                         </div>
