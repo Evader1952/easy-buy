@@ -1,7 +1,9 @@
 package com.ebuy.service;
 
 import com.ebuy.model.query.OrderQuery;
+import com.ebuy.model.web.TbItem;
 import com.ebuy.pojo.Order;
+import com.ebuy.pojo.User;
 
 import java.util.List;
 
@@ -56,4 +58,12 @@ public interface OrderService {
 
     List<Order> queryAll(OrderQuery query);
 
+    /**
+     * 创建订单
+     * @param user
+     * @param shopcart
+     * @param total
+     * @return
+     */
+    String createOrder(User user, List<TbItem> shopcart, Float total);
 }

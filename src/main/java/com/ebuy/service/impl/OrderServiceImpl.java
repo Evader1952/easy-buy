@@ -1,13 +1,24 @@
 package com.ebuy.service.impl;
 
+import com.ebuy.enums.OrderStatusEnum;
 import com.ebuy.mapper.OrderMapper;
 import com.ebuy.model.query.OrderQuery;
+import com.ebuy.model.web.TbItem;
 import com.ebuy.pojo.Order;
+import com.ebuy.pojo.OrderDetail;
+import com.ebuy.pojo.User;
+import com.ebuy.service.OrderDetailService;
 import com.ebuy.service.OrderService;
+import com.ebuy.service.UserAddressService;
+import com.ebuy.utils.DataUtil;
+import com.ebuy.utils.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * (Order)表服务实现类
@@ -20,6 +31,11 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderMapper orderMapper;
 
+    @Autowired
+    private OrderDetailService orderDetailService;
+
+    @Autowired
+    private UserAddressService userAddressService;
     /**
      * 通过ID查询单条数据
      *
@@ -81,5 +97,42 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> queryAll(OrderQuery query) {
         return orderMapper.queryAll(query);
+    }
+
+    @Override
+    public String createOrder(User user, List<TbItem> shopcart, Float total) {
+        if (DataUtil.isEmpty(user)||DataUtil.isEmpty(user.getLoginName())){
+            return "请登录";
+        }
+        if (DataUtil.isEmpty(shopcart)){
+            return "请选择商品";
+        }
+        if (DataUtil.isEmpty(shopcart)){
+            return "请选择商品";
+        }
+        Order order = new Order();
+        order.setSerialNumber(StringUtil.getTradeNo());
+        order.setUserId(user.getId());
+        order.setLoginName(user.getLoginName());
+        //页面选择的地址
+        order.setUserAddress("");
+        order.setCost(total);
+        order.setCreateTime(new Date());
+        order.setStatus(OrderStatusEnum.WAIT.toCode());
+        //订单类型？ 不确定
+        order.setType(null);
+        Order insert = this.insert(order);
+        List<OrderDetail> detailList = shopcart.stream().map(c -> getOrderDetail(c, insert.getId())).collect(Collectors.toList());
+        orderDetailService.insertBath(detailList);
+        return null;
+    }
+
+    OrderDetail getOrderDetail(TbItem tbItem,Integer orderId){
+        OrderDetail detail = new OrderDetail();
+        detail.setOrderId(orderId);
+        detail.setProductId(tbItem.getProductId());
+        detail.setQuantity(tbItem.getCount());
+        detail.setCost(tbItem.getPrice());
+        return  detail;
     }
 }

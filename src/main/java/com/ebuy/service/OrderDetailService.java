@@ -53,4 +53,6 @@ public interface OrderDetailService {
      */
     boolean deleteById(Integer id);
 
+    void insertBath(List<OrderDetail> list);
+
 }

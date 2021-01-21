@@ -20,15 +20,17 @@ public class CartController {
 
     @Autowired
     private ProductService productService;
+
     /**
      * 加入购物车
+     *
      * @param pid
      * @param session
      * @return
      */
     @RequestMapping("/addCart")
     @ResponseBody
-    public List<TbItem> addCart(Integer pid, HttpSession session){
+    public List<TbItem> addCart(Integer pid, HttpSession session) {
         //将选中的商品加入购物车中
         //标识符:判断是否存在此商品
         boolean flag = false;
@@ -53,11 +55,12 @@ public class CartController {
                 if (item.getProductId().equals(product.getId())) {
                     flag = true;
                     item.setCount(item.getCount() + 1);
-                    item.setPrice(product.getPrice()*item.getCount());
+                    item.setPrice(product.getPrice() * item.getCount());
                 }
             }
         }
         //如果购物车中没有当前商品的信息,则新增商品
+
         if (!flag) {
             TbItem item = new TbItem();
             item.setName(product.getName());
@@ -69,47 +72,94 @@ public class CartController {
             shopcart.add(item);
         }
         //计算总价格
-        float total = 0f;
-        int count = 0;
-        for (TbItem item : shopcart) {
-            count += item.getCount();
-            total += item.getPrice();
-        }
-        for (TbItem order : shopcart) {
-            order.setTotal(total);
-        }
+//        float total = 0f;
+//        int count = 0;
+//        for (TbItem item : shopcart) {
+//            count += item.getCount();
+//            total += item.getPrice();
+//        }
+//        for (TbItem order : shopcart) {
+//            order.setTotal(total);
+//        }
+        Float total = shopcart.stream().map(TbItem::getPrice).reduce(0.00f,(s1, s2) -> s1 = s1 + s2);
+        Integer count = shopcart.stream().map(TbItem::getCount).reduce(0, Integer::sum);
         //设置session
+        session.setAttribute("total", total);
         session.setAttribute("shopcart", shopcart);
-        session.setAttribute("cartNum",count);
+        session.setAttribute("cartNum", count);
         //返回list
         return shopcart;
     }
 
     @RequestMapping("/delItem")
-    public String delItem(Integer id, HttpServletRequest request){
+    public String delItem(Integer pid, HttpServletRequest request) {
         //删除商品
-        List<TbItem> items = (List<TbItem>)request.getSession().getAttribute("shopcart");
+        List<TbItem> items = (List<TbItem>) request.getSession().getAttribute("shopcart");
         int index = 0;
         for (int i = 0; i < items.size(); i++) {
-            if(id.equals(items.get(i).getProductId())){
+            if (pid.equals(items.get(i).getProductId())) {
                 index = i;
             }
         }
-        items.remove(index);
-        //计算总价格
-        float total = 0f;
-        int count = 0;
-        for (TbItem item : items) {
-            count += item.getCount();
-            total += item.getPrice();
+        if (index!=0){
+            items.remove(index);
         }
-        for (TbItem order : items) {
-            order.setTotal(total);
-        }
+//        //计算总价格
+//        float total = 0f;
+//        int count = 0;
+//        for (TbItem item : items) {
+//            count += item.getCount();
+//            total += item.getPrice();
+//        }
+//        for (TbItem order : items) {
+//            order.setTotal(total);
+//        }
+        Float total = items.stream().map(TbItem::getPrice).reduce((s1, s2) -> s1 = s1 + s2).get();
+        Integer count = items.stream().map(TbItem::getCount).reduce(0, Integer::sum);
         //设置session
         request.getSession().setAttribute("shopcart", items);
-        request.getSession().setAttribute("cartNum",count);
+        request.getSession().setAttribute("cartNum", count);
+        request.getSession().setAttribute("total", total);
         return "redirect:/jump/goCartList";
     }
+
+    /**
+     * 加或减 商品数量
+     * @param pid
+     * @param type
+     * @param request
+     * @return
+     */
+    @RequestMapping("addOrCutCart")
+    public String cutCart(Integer pid,Integer type, HttpServletRequest request) {
+        Product product = productService.queryById(pid);
+        List<TbItem> shopcart = (List<TbItem>) request.getSession().getAttribute("shopcart");
+        int index = 0;
+        for (int i = 0; i < shopcart.size(); i++) {
+            if (shopcart.get(i).getProductId().equals(product.getId())) {
+                if (type.equals(1)){
+                    if (shopcart.get(i).getCount()==1){
+                        index=i;
+                        continue;
+                    }
+                    shopcart.get(i).setCount(shopcart.get(i).getCount() - 1);
+                    shopcart.get(i).setPrice(shopcart.get(i).getPrice() - product.getPrice());
+                }else {
+                    shopcart.get(i).setCount(shopcart.get(i).getCount() +1);
+                    shopcart.get(i).setPrice(shopcart.get(i).getPrice() + product.getPrice());
+                }
+            }
+        }
+        if (index!=0){
+            shopcart.remove(index);
+        }
+        Float total = shopcart.stream().map(TbItem::getPrice).reduce((s1, s2) -> s1 = s1 + s2).get();
+        Integer count = shopcart.stream().map(TbItem::getCount).reduce(0, Integer::sum);
+        request.getSession().setAttribute("total", total);
+        request.getSession().setAttribute("shopcart", shopcart);
+        request.getSession().setAttribute("cartNum", count);
+        return "redirect:/jump/goCartList";
+    }
+
 
 }

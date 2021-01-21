@@ -56,21 +56,21 @@
                     <td align="center">颜色：灰色</td>
                     <td align="center">
                         <div class="c_num">
-                            <input type="button" value="" onclick="jianUpdate1(jq(this));" class="car_btn_1" />
+                            <input type="button" value="" onclick="window.location.href='/cart/addOrCutCart?pid=${item.productId}&type=1'" class="car_btn_1" />
                             <input type="text" value="${item.count}" name="" class="car_ipt" />
-                            <input type="button" value="" onclick="addUpdate1(jq(this));" class="car_btn_2" />
+                            <input type="button" value="" onclick="window.location.href='/cart/addOrCutCart?pid=${item.productId}&type=2'" class="car_btn_2" />
                         </div>
                     </td>
                     <td align="center" style="color:#ff4e00;">￥${item.price}</td>
 
-                    <td align="center"><a href="/cart/delItem?id=${item.productId}">删除</a>&nbsp; &nbsp;<a href="#">收藏</a></td>
+                    <td align="center"><a href="/cart/delItem?pid=${item.productId}">删除</a>&nbsp; &nbsp;<a href="#">收藏</a></td>
                 </tr>
                 </c:forEach>
 
                 <tr height="70">
                     <td colspan="6" style="font-family:'Microsoft YaHei'; border-bottom:0;">
                         <label class="r_rad"><input type="checkbox" name="clear" checked="checked" /></label><label class="r_txt">清空购物车</label>
-                        <span class="fr">商品总价：<b style="font-size:22px; color:#ff4e00;">￥${sessionScope.shopcart.get(0).total}</b></span>
+                        <span class="fr">商品总价：<b style="font-size:22px; color:#ff4e00;">￥${sessionScope.total}</b></span>
                     </td>
                 </tr>
                 <tr valign="top" height="150">

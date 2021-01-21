@@ -170,7 +170,7 @@
                 </li>
                 </c:forEach>
             </ul>
-            <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span class="total">${sessionScope.shopcart.get(0).total}</span></div>
+            <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span class="total">${sessionScope.total}</span></div>
             <div class="price_a"><a href="/jump/goCartList">去购物车结算</a></div>
             </c:if>
             <!--End 购物车已登录 End-->

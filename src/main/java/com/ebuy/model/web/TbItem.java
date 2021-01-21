@@ -12,5 +12,10 @@ public class TbItem {
     private String name; //商品名称
     private Integer count;  //购买数量
     private Float price; //小计
+
+
+    /**
+     * 太过冗余 无必要
+     */
     private Float total;  //总计
 }

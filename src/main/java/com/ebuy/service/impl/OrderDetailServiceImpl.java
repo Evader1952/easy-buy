@@ -76,4 +76,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public boolean deleteById(Integer id) {
         return this.orderDetailMapper.deleteById(id) > 0;
     }
+
+    @Override
+    public void insertBath(List<OrderDetail> list) {
+        this.insertBath(list);
+    }
 }

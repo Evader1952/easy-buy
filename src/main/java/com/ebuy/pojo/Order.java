@@ -1,5 +1,6 @@
 package com.ebuy.pojo;
 
+import com.ebuy.enums.OrderStatusEnum;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -35,7 +36,7 @@ public class Order implements Serializable {
     /**
      * 总消费
      */
-    private Object cost;
+    private Float cost;
     /**
      * 创建时间
      */
@@ -46,7 +47,7 @@ public class Order implements Serializable {
     private Integer type;
 
     public  Boolean isSuccess(){
-        return  status.equals(2);
+        return  status.equals(OrderStatusEnum.SUCCESS.toCode());
     }
 
 }

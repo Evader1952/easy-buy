@@ -1,12 +1,18 @@
 package com.ebuy.controller;
 
+import com.ebuy.model.Response;
+import com.ebuy.model.web.TbItem;
 import com.ebuy.pojo.Order;
+import com.ebuy.pojo.User;
 import com.ebuy.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * (Order)表控制层
@@ -33,5 +39,21 @@ public class OrderController {
     public Order selectOne(Integer id) {
         return this.orderService.queryById(id);
     }
+
+
+
+
+
+
+    @GetMapping("createOrder")
+    public Response createOrder(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        List<TbItem> shopcart = (List<TbItem>) session.getAttribute("shopcart");
+        Float total = (Float) session.getAttribute("total");
+
+        orderService.createOrder(user,shopcart,total);
+        return  Response.ok("");
+    }
+
 
 }
