@@ -29,6 +29,7 @@
     <script type="text/javascript" src="/js/tban.js"></script>
     <script type="text/javascript" src="/js/lrscroll_1.js"></script>
     <script type="text/javascript" src="/ajax/ajaxUtil.js"></script>
+    <script type="text/javascript" src="/ajax/cars.js"></script>
 </head>
 <body>
 

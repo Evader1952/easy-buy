@@ -1,8 +1,10 @@
 package com.ebuy.service.impl;
 
 import com.ebuy.mapper.UserAddressMapper;
+import com.ebuy.model.query.UserAddressQuery;
 import com.ebuy.pojo.UserAddress;
 import com.ebuy.service.UserAddressService;
+import com.ebuy.utils.DataUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -75,5 +77,28 @@ public class UserAddressServiceImpl implements UserAddressService {
     @Override
     public boolean deleteById(Integer id) {
         return this.userAddressMapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<UserAddress> queryList(UserAddressQuery query) {
+        return userAddressMapper.queryAll(query);
+    }
+
+    @Override
+    public UserAddress queryDefaultAddress(Integer userId) {
+        UserAddressQuery query = new UserAddressQuery();
+        query.setIsDefault(1);
+        query.setUserId(userId);
+        List<UserAddress> userAddresses = userAddressMapper.queryAll(query);
+        return DataUtil.isEmpty(userAddresses)?null:userAddresses.get(0);
+    }
+
+    @Override
+    public UserAddress queryByUidAndAid(Integer userId, Integer addressId) {
+        UserAddressQuery query = new UserAddressQuery();
+        query.setId(addressId);
+        query.setUserId(userId);
+        List<UserAddress> userAddresses = userAddressMapper.queryAll(query);
+        return DataUtil.isEmpty(userAddresses)?null:userAddresses.get(0);
     }
 }

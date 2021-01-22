@@ -79,6 +79,6 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Override
     public void insertBath(List<OrderDetail> list) {
-        this.insertBath(list);
+        this.orderDetailMapper.insertBatch(list);
     }
 }

@@ -14,17 +14,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
-    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="js/menu.js"></script>
-
-    <script type="text/javascript" src="js/n_nav.js"></script>
-
-    <script type="text/javascript" src="js/num.js">
-        var jq = jQuery.noConflict();
-    </script>
-
-    <script type="text/javascript" src="js/shade.js"></script>
     <title>购物车列表</title>
 </head>
 <body>
@@ -75,7 +64,7 @@
                 </tr>
                 <tr valign="top" height="150">
                     <td colspan="6" align="right">
-                        <a href="#"><img src="images/buy1.gif" /></a>&nbsp; &nbsp; <a href="#"><img src="images/buy2.gif" /></a>
+                        <a href="/jump/goIndex"><img src="images/buy1.gif" /></a>&nbsp; &nbsp; <a href="jump/goCartListTwo"><img src="images/buy2.gif" /></a>
                     </td>
                 </tr>
             </table>

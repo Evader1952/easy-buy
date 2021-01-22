@@ -102,7 +102,7 @@
             	<span class="fl list_or">
                 	<a href="#" class="now">默认</a>
                     <a href="#">
-                    	<span class="fl">销量</span>
+                    	<span class="fl" id="sales">销量</span>
                         <span class="i_up">销量从低到高显示</span>
                         <span class="i_down">销量从高到低显示</span>
                     </a>
@@ -129,7 +129,7 @@
                         <div class="name"><a href="#">${p.name}</a></div>
                         <div class="carbg">
                             <a href="#" class="ss">收藏</a>
-                            <a href="#" class="j_car">加入购物车</a>
+                            <a  onclick="addCart(${p.id})" class="j_car">加入购物车</a>
                         </div>
 
                     </li>

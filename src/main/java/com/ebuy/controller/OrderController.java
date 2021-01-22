@@ -29,30 +29,14 @@ public class OrderController {
     @Resource
     private OrderService orderService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public Order selectOne(Integer id) {
-        return this.orderService.queryById(id);
-    }
 
-
-
-
-
-
-    @GetMapping("createOrder")
-    public Response createOrder(HttpSession session){
+    @PostMapping("createOrder")
+    public Response createOrder(Integer addressId,HttpSession session){
         User user = (User)session.getAttribute("user");
         List<TbItem> shopcart = (List<TbItem>) session.getAttribute("shopcart");
         Float total = (Float) session.getAttribute("total");
-
-        orderService.createOrder(user,shopcart,total);
-        return  Response.ok("");
+        orderService.createOrder(user,shopcart,total,addressId);
+        return  Response.ok("订单创建成功");
     }
 
 

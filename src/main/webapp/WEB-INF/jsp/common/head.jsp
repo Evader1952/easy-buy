@@ -2,8 +2,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/n_nav.js"></script>
+    <script type="text/javascript" src="js/num.js">
+        var jq = jQuery.noConflict();
+    </script>
+    <script type="text/javascript" src="js/shade.js"></script>
     <script type="text/javascript" src="/ajax/ajaxUtil.js"></script>
+    <script type="text/javascript" src="/ajax/cars.js"></script>
+
+
+
+    <script type="text/javascript" src="/js/jquery-1.11.1.min_044d0927.js"></script>
+    <script type="text/javascript" src="/js/jquery.bxslider_e88acd1b.js"></script>
+
+    <script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
+
+    <script type="text/javascript" src="/js/select.js"></script>
+
+    <script type="text/javascript" src="/js/lrscroll.js"></script>
+
+    <script type="text/javascript" src="/js/iban.js"></script>
+    <script type="text/javascript" src="/js/fban.js"></script>
+    <script type="text/javascript" src="/js/f_ban.js"></script>
+    <script type="text/javascript" src="/js/mban.js"></script>
+    <script type="text/javascript" src="/js/bban.js"></script>
+    <script type="text/javascript" src="/js/hban.js"></script>
+    <script type="text/javascript" src="/js/tban.js"></script>
+
+    <script type="text/javascript" src="/js/lrscroll_1.js"></script>
 </head>
 <body>
 

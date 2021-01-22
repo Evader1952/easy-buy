@@ -1,5 +1,6 @@
 package com.ebuy.service;
 
+import com.ebuy.model.query.ProductQuery;
 import com.ebuy.pojo.Product;
 
 import java.util.List;
@@ -53,5 +54,5 @@ public interface ProductService {
      */
     boolean deleteById(Integer id);
 
-    List<Product> getProducts(Integer pid);
+    List<Product> getProducts(ProductQuery query);
 }

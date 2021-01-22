@@ -7,6 +7,7 @@ import com.ebuy.model.web.TbItem;
 import com.ebuy.pojo.Order;
 import com.ebuy.pojo.OrderDetail;
 import com.ebuy.pojo.User;
+import com.ebuy.pojo.UserAddress;
 import com.ebuy.service.OrderDetailService;
 import com.ebuy.service.OrderService;
 import com.ebuy.service.UserAddressService;
@@ -36,6 +37,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private UserAddressService userAddressService;
+
     /**
      * 通过ID查询单条数据
      *
@@ -100,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String createOrder(User user, List<TbItem> shopcart, Float total) {
+    public String createOrder(User user, List<TbItem> shopcart, Float total,Integer addressId) {
         if (DataUtil.isEmpty(user)||DataUtil.isEmpty(user.getLoginName())){
             return "请登录";
         }
@@ -115,15 +117,16 @@ public class OrderServiceImpl implements OrderService {
         order.setUserId(user.getId());
         order.setLoginName(user.getLoginName());
         //页面选择的地址
-        order.setUserAddress("");
+        UserAddress userAddress = userAddressService.queryByUidAndAid(user.getId(), addressId);
+        order.setUserAddress(userAddress.getAddress());
         order.setCost(total);
         order.setCreateTime(new Date());
         order.setStatus(OrderStatusEnum.WAIT.toCode());
         //订单类型？ 不确定
-        order.setType(null);
+        order.setType(1);
         Order insert = this.insert(order);
         List<OrderDetail> detailList = shopcart.stream().map(c -> getOrderDetail(c, insert.getId())).collect(Collectors.toList());
-        orderDetailService.insertBath(detailList);
+        detailList.forEach(d->orderDetailService.insert(d));
         return null;
     }
 

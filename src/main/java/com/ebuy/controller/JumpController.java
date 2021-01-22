@@ -21,4 +21,15 @@ public class JumpController {
     public String goMember(){
         return "Member";
     }
+
+
+    @RequestMapping("/goCartListTwo")
+    public String goCartListTwo(){
+        return "cartList_two";
+    }
+
+    @RequestMapping("/goCartListThree")
+    public String goCartListThree(){
+        return "cartList_three";
+    }
 }

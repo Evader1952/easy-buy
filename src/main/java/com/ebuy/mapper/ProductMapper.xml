@@ -68,6 +68,15 @@
             <if test="isDelete != null">
                 and is_delete = #{isDelete}
             </if>
+            <if test="orderBy !=null and orderBy != ''">
+                order by ${orderBy}
+                <if test="sort !=null and sort != ''">
+                    ${sort}
+                </if>
+                <if test="sort ==null or sort == ''">
+                    desc
+                </if>
+            </if>
         </where>
     </select>
 

@@ -1,5 +1,6 @@
 package com.ebuy.service;
 
+import com.ebuy.model.query.UserAddressQuery;
 import com.ebuy.pojo.UserAddress;
 
 import java.util.List;
@@ -53,4 +54,9 @@ public interface UserAddressService {
      */
     boolean deleteById(Integer id);
 
+    List<UserAddress> queryList(UserAddressQuery query);
+
+    UserAddress queryDefaultAddress(Integer userId);
+
+    UserAddress queryByUidAndAid(Integer userId,Integer addressId);
 }

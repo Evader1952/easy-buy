@@ -1,6 +1,7 @@
 package com.ebuy.service.impl;
 
 import com.ebuy.mapper.ProductMapper;
+import com.ebuy.model.query.ProductQuery;
 import com.ebuy.pojo.Product;
 import com.ebuy.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -78,9 +79,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProducts(Integer pid) {
-        Product product = new Product();
-        product.setCategoryLevel1Id(pid);
-        return  productMapper.queryAll(product);
+    public List<Product> getProducts(ProductQuery query) {
+        return  productMapper.queryAll(query);
     }
 }

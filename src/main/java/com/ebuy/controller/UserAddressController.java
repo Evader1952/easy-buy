@@ -1,12 +1,17 @@
 package com.ebuy.controller;
 
+import com.ebuy.model.Response;
+import com.ebuy.pojo.User;
 import com.ebuy.pojo.UserAddress;
 import com.ebuy.service.UserAddressService;
+import com.ebuy.utils.DataUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * (UserAddress)表控制层
@@ -24,14 +29,26 @@ public class UserAddressController {
     private UserAddressService userAddressService;
 
     /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
+     * 查默认收货地址
+     * @param
+     * @return
      */
-    @GetMapping("selectOne")
-    public UserAddress selectOne(Integer id) {
-        return this.userAddressService.queryById(id);
+    @GetMapping("getDefault")
+    public Response<UserAddress> getDefault(HttpSession session) {
+        User user= (User) session.getAttribute("user");
+        if (DataUtil.isEmpty(user)){
+            return Response.fail("请登录");
+        }
+        return Response.ok( userAddressService.queryDefaultAddress(user.getId()));
     }
 
+    /**
+     * 所有收货地址
+     * @return
+     */
+    @GetMapping("getAll")
+    public Response<List<UserAddress>> getAll() {
+        List<UserAddress> userAddresses = userAddressService.queryList(null);
+        return Response.ok(userAddresses);
+    }
 }
