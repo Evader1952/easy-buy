@@ -257,7 +257,7 @@
             </tr>
             <tr height="70">
                 <td align="right">
-                    <b style="font-size:14px;">应付款金额：<span style="font-size:22px; color:#ff4e00;">￥2899</span></b>
+                    <b style="font-size:14px;">应付款金额：<span style="font-size:22px; color:#ff4e00;">${sessionScope.total}</span></b>
                 </td>
             </tr>
             <tr height="70">

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/cart")
@@ -30,7 +32,7 @@ public class CartController {
      */
     @RequestMapping("/addCart")
     @ResponseBody
-    public List<TbItem> addCart(Integer pid, HttpSession session) {
+    public Map<String, Object> addCart(Integer pid, HttpSession session) {
         //将选中的商品加入购物车中
         //标识符:判断是否存在此商品
         boolean flag = false;
@@ -88,7 +90,10 @@ public class CartController {
         session.setAttribute("shopcart", shopcart);
         session.setAttribute("cartNum", count);
         //返回list
-        return shopcart;
+        Map<String, Object> map=new HashMap<>();
+        map.put("shopcart", shopcart);
+        map.put("total", total);
+        return map;
     }
 
     @RequestMapping("/delItem")

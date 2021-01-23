@@ -9,7 +9,7 @@ function addCart(pid) {
             //清空购物车列表
             jq(".cars").empty();
             //动态构建购物车
-            var obj = result;
+            var obj = result.shopcart;
             var count = 0;
             jq.each(obj,function (index,item) {
                 count += item.count;
@@ -19,8 +19,8 @@ function addCart(pid) {
                     "                    <div class=\"price\"><font color=\"#ff4e00\">￥"+item.price+"</font> X"+item.count+"</div>\n" +
                     "                </li>";
                 jq(".cars").append(li);
-                jq(".total").html(item.total);
             })
+            jq(".total").html(result.total);
             jq(".car_t>span").html(count);
         }
     })

@@ -40,11 +40,11 @@ public class UserWebController {
         User user = (User) session.getAttribute("user");
         UserInfo userInfo = new UserInfo();
         BeanUtils.copyProperties(user, userInfo);
-        userInfo.setCreateTime(DataUtil.isEmpty(user.getCreateTime()) ? "" : DateUtil.formatDate(user.getCreateTime(), DateUtil.PATTERN_YYYY_MM_DD));
+        userInfo.setCreateTime(DataUtil.isEmpty(user.getCreateTime()) ? "" : DateUtil.formatDate(user.getCreateTime(), DateUtil.PATTERN_YYYY_MM_DD_HH_MM_SS));
         OrderQuery query = new OrderQuery();
         query.setUserId(user.getId());
         List<Order> orders = orderService.queryAll(query);
-        long count = orders.stream().filter(Order::isSuccess).count();
+        long count = orders.stream().filter(order -> order.getStatus().equals(2)).count();
         userInfo.setOrderCount(Integer.valueOf(String.valueOf(count)));
         return Response.ok(userInfo);
     }

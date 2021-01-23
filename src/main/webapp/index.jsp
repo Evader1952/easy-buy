@@ -12,7 +12,7 @@
 </head>
 <body>
     <script>
-        window.location.href='/jump/goIndex';
+        window.location.href='/index/initData';
     </script>
 </body>
 </html>

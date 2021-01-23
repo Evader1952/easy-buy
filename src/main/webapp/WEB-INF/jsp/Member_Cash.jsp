@@ -195,7 +195,7 @@
             <div class="left_m">
             	<div class="left_m_t t_bg1">订单中心</div>
                 <ul>
-                	<li><a href="Member_Order.html" class="now">我的订单</a></li>
+                	<li><a href="Member_Order.jsp">我的订单</a></li>
                     <li><a href="Member_Address.jsp">收货地址</a></li>
                     <li><a href="#">缺货登记</a></li>
                     <li><a href="#">跟踪订单</a></li>
@@ -205,7 +205,7 @@
             	<div class="left_m_t t_bg2">会员中心</div>
                 <ul>
                 	<li><a href="Member_User.html">用户信息</a></li>
-                    <li><a href="Member_Collect.html">我的收藏</a></li>
+                    <li><a href="Member_Collect.jsp">我的收藏</a></li>
                     <li><a href="Member_Msg.html">我的留言</a></li>
                     <li><a href="Member_Links.html">推广链接</a></li>
                     <li><a href="#">我的评论</a></li>
@@ -225,108 +225,59 @@
                 	<li><a href="Member_Member.html">我的会员</a></li>
                     <li><a href="Member_Results.html">我的业绩</a></li>
                     <li><a href="Member_Commission.html">我的佣金</a></li>
-                    <li><a href="Member_Cash.html">申请提现</a></li>
+                    <li><a href="Member_Cash.jsp" class="now">申请提现</a></li>
                 </ul>
             </div>
         </div>
 		<div class="m_right">
-            <p></p>
-            <div class="mem_tit">我的订单</div>
-            <table border="0" class="order_tab" style="width:930px; text-align:center; margin-bottom:30px;" cellspacing="0" cellpadding="0">
-              <tr>                                                                                                                                                    
-                <td width="20%">订单号</td>
-                <td width="25%">下单时间</td>
-                <td width="15%">订单总金额</td>
-                <td width="25%">订单状态</td>
-                <td width="15%">操作</td>
-              </tr>
-              <tr>
-                <td><font color="#ff4e00">2015092823056</font></td>
-                <td>2015-09-26   16:45:20</td>
-                <td>￥456.00</td>
-                <td>未确认，未付款，未发货</td>
-                <td>取消订单</td>
-              </tr>
-              <tr>
-                <td><font color="#ff4e00">2015092823056</font></td>
-                <td>2015-09-26   16:45:20</td>
-                <td>￥456.00</td>
-                <td>已确认，已付款，已发货</td>
-                <td><font color="#ff4e00">已确认</font></td>
-              </tr>
-              <tr>
-                <td><font color="#ff4e00">2015092823056</font></td>
-                <td>2015-09-26   16:45:20</td>
-                <td>￥456.00</td>
-                <td>未确认，未付款，未发货</td>
-                <td>取消订单</td>
-              </tr>
-              <tr>
-                <td><font color="#ff4e00">2015092823056</font></td>
-                <td>2015-09-26   16:45:20</td>
-                <td>￥456.00</td>
-                <td>已确认，已付款，已发货</td>
-                <td><font color="#ff4e00">已确认</font></td>
-              </tr>
-              <tr>
-                <td><font color="#ff4e00">2015092823056</font></td>
-                <td>2015-09-26   16:45:20</td>
-                <td>￥456.00</td>
-                <td>未确认，未付款，未发货</td>
-                <td>取消订单</td>
-              </tr>
-              <tr>
-                <td><font color="#ff4e00">2015092823056</font></td>
-                <td>2015-09-26   16:45:20</td>
-                <td>￥456.00</td>
-                <td>已确认，已付款，已发货</td>
-                <td><font color="#ff4e00">已确认</font></td>
-              </tr>
-              <tr>
-                <td><font color="#ff4e00">2015092823056</font></td>
-                <td>2015-09-26   16:45:20</td>
-                <td>￥456.00</td>
-                <td>未确认，未付款，未发货</td>
-                <td>取消订单</td>
-              </tr>
-            </table>
-
-
-            <div class="mem_tit">合并订单</div>
-            <table border="0" class="order_tab" style="width:930px;"  cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="135" align="right">主订单</td>
-                <td width="220">
-                	<select class="jj" name="order1">
-                      <option value="0" selected="selected">请选择...</option>
-                      <option value="1">2015092626589</option>
-                      <option value="2">2015092626589</option>
-                      <option value="3">2015092626589</option>
-                      <option value="4">2015092626589</option>
-                    </select>
-                </td>
-                <td width="135" align="right">从订单</td>
-                <td width="220">
-                	<select class="jj" name="order2">
-                      <option value="0" selected="selected">请选择...</option>
-                      <option value="1">2015092626589</option>
-                      <option value="2">2015092626589</option>
-                      <option value="3">2015092626589</option>
-                      <option value="4">2015092626589</option>
-                    </select>
-                </td>
-                <td><div class="btn_u"><a href="#">合并订单</a></div></td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td colspan="4" style="font-family:'宋体'; padding:20px 10px 50px 10px;">
-                	订单合并是在发货前将相同状态的订单合并成一新的订单。 <br />
-                    收货地址，送货方式等以主定单为准。
-                </td>
-              </tr>
-            </table>
-
+            <p></p>		
             
+			<div class="mem_tit">
+            	申请提现
+            </div>
+            <table border="0" class="mem_tab" style="width:930px; margin-bottom:30px;" cellspacing="0" cellpadding="0">
+              <tr>
+              	<td class="ma_a" colspan="2" style="padding:12px 50px;">
+                	<span class="fl" style="color:#ff4e00; font-size:14px;">会员余额：<b>￥ 1000元</b></span>
+                    <span class="fr"><a href="#">账户明细</a>|<a href="#">提现记录</a></span>        
+                </td>
+              </tr>
+              <tr>                                                                                                                                                    
+                <td width="150" class="tx_l">提现金额</td>                                                                                                                                         
+                <td width="680"><input type="text" value="提取金额" class="tx_ipt" /></td>
+              </tr>
+              <tr>
+                <td class="tx_l">真实姓名</td>
+                <td><input type="text" value="姓名填写" class="tx_ipt" /></td>
+              </tr>
+              <tr>
+                <td class="tx_l">开户行</td>
+                <td><input type="text" value="填写银行名称" class="tx_ipt" /></td>
+              </tr>
+              <tr>
+                <td class="tx_l">银行账号</td>
+                <td><input type="text" value="填写银行账号" class="tx_ipt" /></td>
+              </tr>
+              <tr>
+                <td class="tx_l">手机号</td>
+                <td><input type="text" value="手机号码" class="tx_ipt" /></td>
+              </tr>
+              <tr valign="top">
+                <td class="tx_l">备注</td>
+                <td><textarea class="tx_txt">会员备注</textarea></td>
+              </tr>
+              <tr height="70">
+                <td colspan="2" align="center">
+                	<input type="submit" value="提交表单" class="btn_tj" /> &nbsp; &nbsp; <input type="reset" value="重置表单" class="btn_tj" />
+                </td>
+              </tr>
+			</table>
+            
+
+
+
+
+
         </div>
     </div>
 	<!--End 用户中心 End--> 
@@ -337,6 +288,8 @@
               <tr>
                 <td width="72"><img src="images/b1.png" width="62" height="62" /></td>
                 <td><h2>正品保障</h2>正品行货  放心购买</td>
+
+
               </tr>
             </table>
 			<table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
@@ -382,6 +335,7 @@
         </dl>
         <dl>
         	<dt><a href="#">服务保证</a></dt>
+
             <dd><a href="#">退换货原则</a></dd>
             <dd><a href="#">售后服务保证</a></dd>
             <dd><a href="#">产品质量保证</a></dd>

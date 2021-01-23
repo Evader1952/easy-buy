@@ -1,19 +1,15 @@
-package com.ebuy.pojo;
+package com.ebuy.model.web;
 
-import com.ebuy.enums.OrderStatusEnum;
 import lombok.Data;
 
-import java.io.Serializable;
-import java.util.Date;
-
 /**
- * (Order)实体类
- *
- * @author makejava
- * @since 2021-01-19 16:37:16
- */
+ * @description:
+ * @author: mapei
+ * @create: 2021-01-23 16:23
+ **/
 @Data
-public class Order   {
+public class OrderWebInfo {
+
     /**
      * 主键
      */
@@ -39,14 +35,11 @@ public class Order   {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private String createTime;
 
     private Integer status;
 
+    private  String statusDesc;
+
     private Integer type;
-
-  //  public  Boolean isSuccess(){
-//        return  status.equals(OrderStatusEnum.SUCCESS.toCode());
-//    }
-
 }

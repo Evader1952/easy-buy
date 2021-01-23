@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+
 <head>
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
@@ -35,7 +35,7 @@
 
     <script type="text/javascript" src="/js/lrscroll_1.js"></script>
 </head>
-<body>
+
 
 
 <div class="soubg">
@@ -255,6 +255,5 @@
     </div>
 </div>
 
-</body>
-</html>
+
 <!--End Menu End-->

@@ -32,4 +32,10 @@ public class JumpController {
     public String goCartListThree(){
         return "cartList_three";
     }
+
+    @RequestMapping("/goMemberOrder")
+    public String goMemberOrder(){
+        return "Member_Order";
+    }
+
 }

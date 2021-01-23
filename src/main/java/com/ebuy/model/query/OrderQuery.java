@@ -15,4 +15,6 @@ import lombok.NoArgsConstructor;
 public class OrderQuery extends Order {
 
     private String sort;
+
+    private Integer pageNow;
 }
