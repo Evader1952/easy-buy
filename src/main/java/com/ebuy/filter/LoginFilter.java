@@ -24,10 +24,11 @@ public class LoginFilter implements Filter {
 
     protected boolean isNotProtectedUrl(HttpServletRequest request) {
         return pathMatcher.match("/login.jsp", request.getServletPath())
-                ||pathMatcher.match("/user/login", request.getServletPath())
                 ||pathMatcher.match("/reg.jsp", request.getServletPath())
                 ||pathMatcher.match("/index.jsp", request.getServletPath())
+                ||pathMatcher.match("/user/login", request.getServletPath())
                 ||pathMatcher.match("/index/**", request.getServletPath())
+                ||pathMatcher.match("/news/**", request.getServletPath())
                 ;
     }
     @Autowired
@@ -46,14 +47,11 @@ public class LoginFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) arg0;
         HttpServletResponse response = (HttpServletResponse) arg1;
-        String servletPath = request.getServletPath();
-
-        HttpSession session = request.getSession();
-        /*登陆界面和登陆方法不进行过滤*/
+        //不受到保护的url
         if (isNotProtectedUrl(request)) {
             arg2.doFilter(arg0, arg1);
         } else {
-            Object userObj = session.getAttribute("user");
+            Object userObj = request.getSession().getAttribute("user");
             if (userObj != null) {
                 arg2.doFilter(arg0, arg1);
             } else {
