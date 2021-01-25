@@ -76,7 +76,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             if (DataUtil.isEmpty(user)) {
                 //登录失败
                 response.getWriter().write("<script>window.location='/login.jsp';alert('登录失败')</script>");
-                return  false;
+                return false;
             } else {
                 //登录成功
                 //方式一:存储在session
@@ -84,34 +84,41 @@ public class LoginInterceptor implements HandlerInterceptor {
                 //方式三: 存到请求中
                 request.getSession().setAttribute("user", user);
                 response.sendRedirect(indexUrl);
-                return  true;
+                return true;
             }
         }
         if (isNotProtectedUrl(request)) {
             return true;
         } else {
-            User user = (User)request.getSession().getAttribute("user");
-             if (!DataUtil.isEmpty(user)) {
-                 RequestContext.RequestUser requestUser = new RequestContext.RequestUser();
-                 BeanUtils.copyProperties(user, requestUser);
-                 requestUser.setCreateTime(DataUtil.isEmpty(user.getCreateTime()) ? "" : DateUtil.formatDate(user.getCreateTime(), DateUtil.PATTERN_YYYY_MM_DD_HH_MM_SS));
-                 RequestContext.setCurrentUser(requestUser);
-                 return true;
+            User user = (User) request.getSession().getAttribute("user");
+            if (!DataUtil.isEmpty(user)) {
+                RequestContext.RequestUser requestUser = new RequestContext.RequestUser();
+                BeanUtils.copyProperties(user, requestUser);
+                requestUser.setCreateTime(DataUtil.isEmpty(user.getCreateTime()) ? "" : DateUtil.formatDate(user.getCreateTime(), DateUtil.PATTERN_YYYY_MM_DD_HH_MM_SS));
+                RequestContext.setCurrentUser(requestUser);
+                return true;
             } else {
-                 log.error("ServletPath:{}",request.getServletPath() );
-                 String requestHeader = request.getHeader("X-Requested-With");
-                 log.error("requestHeader:{}",requestHeader);
+                //如果是ajax
+                String header = request.getHeader("x-requested-with");
+                if (request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")){
+                    response.setHeader("SESSIONSTATUS", "TIMEOUT");
+                    response.setHeader("path", request.getContextPath()+"/login.jsp");
+                    // FORBIDDEN，forbidden。也就是禁止、403
+                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                }else {
+                    response.sendRedirect(dispatchUrl);
+
+                }
 //                response.sendRedirect(request.getContextPath()+"login.jsp");
-                 response.sendRedirect(dispatchUrl);
-                 return false;
+                return false;
             }
         }
-      //  return false;
+        //  return false;
     }
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
-           }
+    }
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse response, Object o, Exception e) throws Exception {
