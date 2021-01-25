@@ -2,6 +2,7 @@ package com.ebuy.service.impl;
 
 import com.ebuy.enums.OrderStatusEnum;
 import com.ebuy.mapper.OrderMapper;
+import com.ebuy.model.RequestContext;
 import com.ebuy.model.query.OrderQuery;
 import com.ebuy.model.web.TbItem;
 import com.ebuy.pojo.Order;
@@ -102,7 +103,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String createOrder(User user, List<TbItem> shopcart, Float total,Integer addressId) {
+    public String createOrder(List<TbItem> shopcart, Float total,Integer addressId) {
+        RequestContext.RequestUser user = RequestContext.getCurrentUser();
         if (DataUtil.isEmpty(user)||DataUtil.isEmpty(user.getLoginName())){
             return "请登录";
         }

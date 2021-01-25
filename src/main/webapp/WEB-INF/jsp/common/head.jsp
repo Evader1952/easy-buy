@@ -123,7 +123,7 @@
                     你好，请<a href="login.jsp">登录</a>&nbsp; <a href="reg.jsp" style="color:#ff4e00;">免费注册</a>&nbsp;
                 </c:if>
                 <c:if test="${sessionScope.user != null}">欢迎您，${sessionScope.user.userName}</c:if>
-                    |&nbsp;<a href="#">我的订单</a>&nbsp;|
+                    |&nbsp;<a href="/jump/goMemberOrder">我的订单</a>&nbsp;|
             </span>
 
 
@@ -186,7 +186,7 @@
         <div class="car_bg">
             <c:if test="${user == null}">
             <!--Begin 购物车未登录 Begin-->
-            <div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
+            <div class="un_login">还未登录！<a href="login.jsp" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
             <!--End 购物车未登录 End-->
             </c:if>
             <!--Begin 购物车已登录 Begin-->

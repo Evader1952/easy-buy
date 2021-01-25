@@ -60,10 +60,9 @@ public interface OrderService {
 
     /**
      * 创建订单
-     * @param user
      * @param shopcart
      * @param total
      * @return
      */
-    String createOrder(User user, List<TbItem> shopcart, Float total,Integer addressId);
+    String createOrder(List<TbItem> shopcart, Float total,Integer addressId);
 }

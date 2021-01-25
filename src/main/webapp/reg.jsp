@@ -66,7 +66,7 @@
                         <td width="95">&nbsp;</td>
                         <td>
                             <span class="fl" style="font-size:24px;">注册</span>
-                            <span class="fr">已有商城账号，<a href="Login.html" style="color:#ff4e00;">我要登录</a></span>
+                            <span class="fr">已有商城账号，<a href="login.jsp" style="color:#ff4e00;">我要登录</a></span>
                         </td>
                     </tr>
                     <tr height="50">

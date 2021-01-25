@@ -1,6 +1,7 @@
 package com.ebuy.controller;
 
 import com.ebuy.enums.OrderStatusEnum;
+import com.ebuy.model.RequestContext;
 import com.ebuy.model.Response;
 import com.ebuy.model.query.OrderQuery;
 import com.ebuy.model.web.OrderWebInfo;
@@ -48,10 +49,9 @@ public class OrderController {
      */
     @PostMapping("createOrder")
     public Response createOrder(Integer addressId, HttpSession session) {
-        User user = (User) session.getAttribute("user");
         List<TbItem> shopCart = (List<TbItem>) session.getAttribute("shopcart");
         Float total = (Float) session.getAttribute("total");
-        orderService.createOrder(user, shopCart, total, addressId);
+        orderService.createOrder(shopCart, total, addressId);
         return Response.ok("订单创建成功");
     }
 
@@ -63,7 +63,7 @@ public class OrderController {
      */
     @GetMapping("list")
     public Response list(OrderQuery query,HttpSession session) {
-        User user = (User) session.getAttribute("user");
+        RequestContext.RequestUser user = RequestContext.getCurrentUser();
         if (DataUtil.isEmpty(user)){
             return Response.fail("请登录");
         }

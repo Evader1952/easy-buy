@@ -1,5 +1,6 @@
 package com.ebuy.controller;
 
+import com.ebuy.model.RequestContext;
 import com.ebuy.pojo.User;
 import com.ebuy.model.Response;
 import com.ebuy.service.UserService;
@@ -8,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("user")
 public class UserController {
 
@@ -23,27 +25,20 @@ public class UserController {
 
     /**
      * 登录
-     *
-     * @param userName
-     * @param password
-     * @param session
+     *  走拦截器
      * @return
      */
     @RequestMapping("/login")
-    public String login(String userName, String password,
-                        HttpSession session, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=utf-8;");
-        String md5Pwd = MD5Util.MD5(password);
-        List<User> users = userService.login(userName, md5Pwd);
-        if (users.size() == 0) {
-            //登录失败
-            response.getWriter().write("<script>window.location='/login.jsp';alert('登录失败')</script>");
-            return null;
-        } else {
-            //登录成功
-            session.setAttribute("user", users.get(0));
-            return "redirect:/index/initData";
-        }
+    public String login() {
+        RequestContext.RequestUser user = RequestContext.getCurrentUser();
+        System.err.println(user);
+       return null;
+    }
+
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpSession session) {
+        session.removeAttribute("user");
+        return null;
     }
 
     /**

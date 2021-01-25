@@ -81,12 +81,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<User> login(String name, String pwd) {
+    public User login(String name, String pwd) {
         User user = new User();
         user.setLoginName(name);
         user.setPassword(pwd);
         List<User> users = userMapper.queryAll(user);
-        return users;
+        return DataUtil.isEmpty(users)?null:users.get(0);
     }
 
     @Override

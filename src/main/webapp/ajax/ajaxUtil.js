@@ -18,7 +18,7 @@ function ajaxGet(url,data,fun){
             console.error(textStatus);
             console.error(XMLHttpRequest.status);
             console.error(XMLHttpRequest.readyState);
-            alert("请求失败", 3);
+          //  alert("请求失败", 3);
             return false;
         }
     });

@@ -1,5 +1,6 @@
 package com.ebuy.controller;
 
+import com.ebuy.model.RequestContext;
 import com.ebuy.model.Response;
 import com.ebuy.pojo.User;
 import com.ebuy.pojo.UserAddress;
@@ -34,8 +35,8 @@ public class UserAddressController {
      * @return
      */
     @GetMapping("getDefault")
-    public Response<UserAddress> getDefault(HttpSession session) {
-        User user= (User) session.getAttribute("user");
+    public Response<UserAddress> getDefault() {
+        RequestContext.RequestUser user = RequestContext.getCurrentUser();
         if (DataUtil.isEmpty(user)){
             return Response.fail("请登录");
         }

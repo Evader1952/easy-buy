@@ -12,6 +12,11 @@ public class JumpController {
         return "index";
     }
 
+    @RequestMapping("/goLogin")
+    public String goLogin(){
+        return "../login";
+    }
+
     @RequestMapping("/goCartList")
     public String goCartList(){
         return "cartList";

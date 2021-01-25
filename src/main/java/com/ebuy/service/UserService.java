@@ -60,7 +60,7 @@ public interface UserService {
      * @param pwd
      * @return
      */
-    List<User> login(String name, String pwd);
+    User login(String name, String pwd);
 
     /**
      * 注册

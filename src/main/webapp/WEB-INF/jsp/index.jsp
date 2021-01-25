@@ -961,56 +961,56 @@
 </html>
 
 
-<div class="top">
-    <div class="logo"><a href="${ctx}/Home?action=index"><img src="${ctx}/statics/images/logo.png"></a></div>
-    <div class="search">
-        <form>
-            <input txype="text" value="" class="s_ipt">
-            <input type="submit" value="搜索" class="s_btn">
-        </form>
-        <span class="fl">
-            <a href="javascript:void(0)">咖啡</a>
-            <a href="javascript:void(0)">iphone 6S</a>
-            <a href="javascript:void(0)">新鲜美食</a>
-            <a href="javascript:void(0)">蛋糕</a>
-            <a href="javascript:void(0)">日用品</a>
-            <a href="javascript:void(0)">连衣裙</a>
-        </span>
-    </div>
-    <div class="i_car">
-        <div class="car_t">购物车 [ <span>3</span> ]</div>
-        <div class="car_bg">
-            <!--Begin 购物车未登录 Begin-->
-            <c:if test="${sessionScope.loginUser==null}">
-                <div class="un_login">还未登录！<a href="${ctx}/Login?action=toLogin" style="color:#ff4e00;">马上登录</a> 查看购物车！
-                </div>
-            </c:if>
-            <!--End 购物车未登录 End-->
-            <!--Begin 购物车已登录 Begin-->
-            <ul class="cars">
-                <c:if test="${sessionScope.cart2==null || sessionScope.cart2.items.size()<1}"> 您尚未购买任何物品，是否进入<a href="${ctx}/Home?action=index">商品页</a>进行购买！</c:if>
-                <c:if test="${sessionScope.cart2.items.size()>=1}">
-                    <li>
-                        <div class="img">
-                            <a href="javascript:void(0)">
-                                <img src="${ctx}/statics/images/car1.jpg" width="58" height="58">
-                            </a>
-                        </div>
-                        <div class="name">
-                            <a href="javascript:void(0)">法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只</a>
-                        </div>
-                        <div class="price">
-                            <font color="#ff4e00">￥399</font>X1
-                        </div>
-                    </li>
-                </c:if>
-            </ul>
-            <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-            <div class="price_a"><a href="javascript:void(0)">去购物车结算</a></div>
-            <!--End 购物车已登录 End-->
-        </div>
-    </div>
-</div>
+<%--<div class="top">--%>
+    <%--<div class="logo"><a href="${ctx}/Home?action=index"><img src="${ctx}/statics/images/logo.png"></a></div>--%>
+    <%--<div class="search">--%>
+        <%--<form>--%>
+            <%--<input txype="text" value="" class="s_ipt">--%>
+            <%--<input type="submit" value="搜索" class="s_btn">--%>
+        <%--</form>--%>
+        <%--<span class="fl">--%>
+            <%--<a href="javascript:void(0)">咖啡</a>--%>
+            <%--<a href="javascript:void(0)">iphone 6S</a>--%>
+            <%--<a href="javascript:void(0)">新鲜美食</a>--%>
+            <%--<a href="javascript:void(0)">蛋糕</a>--%>
+            <%--<a href="javascript:void(0)">日用品</a>--%>
+            <%--<a href="javascript:void(0)">连衣裙</a>--%>
+        <%--</span>--%>
+    <%--</div>--%>
+    <%--<div class="i_car">--%>
+        <%--<div class="car_t">购物车 [ <span>3</span> ]</div>--%>
+        <%--<div class="car_bg">--%>
+            <%--<!--Begin 购物车未登录 Begin-->--%>
+            <%--<c:if test="${sessionScope.loginUser==null}">--%>
+                <%--<div class="un_login">还未登录！<a href="${ctx}/Login?action=toLogin" style="color:#ff4e00;">马上登录</a> 查看购物车！--%>
+                <%--</div>--%>
+            <%--</c:if>--%>
+            <%--<!--End 购物车未登录 End-->--%>
+            <%--<!--Begin 购物车已登录 Begin-->--%>
+            <%--<ul class="cars">--%>
+                <%--<c:if test="${sessionScope.cart2==null || sessionScope.cart2.items.size()<1}"> 您尚未购买任何物品，是否进入<a href="${ctx}/Home?action=index">商品页</a>进行购买！</c:if>--%>
+                <%--<c:if test="${sessionScope.cart2.items.size()>=1}">--%>
+                    <%--<li>--%>
+                        <%--<div class="img">--%>
+                            <%--<a href="javascript:void(0)">--%>
+                                <%--<img src="${ctx}/statics/images/car1.jpg" width="58" height="58">--%>
+                            <%--</a>--%>
+                        <%--</div>--%>
+                        <%--<div class="name">--%>
+                            <%--<a href="javascript:void(0)">法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只</a>--%>
+                        <%--</div>--%>
+                        <%--<div class="price">--%>
+                            <%--<font color="#ff4e00">￥399</font>X1--%>
+                        <%--</div>--%>
+                    <%--</li>--%>
+                <%--</c:if>--%>
+            <%--</ul>--%>
+            <%--<div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>--%>
+            <%--<div class="price_a"><a href="javascript:void(0)">去购物车结算</a></div>--%>
+            <%--<!--End 购物车已登录 End-->--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 </body>
 <script type="text/javascript" src="js/num.js">
     var jq = jQuery.noConflict();
