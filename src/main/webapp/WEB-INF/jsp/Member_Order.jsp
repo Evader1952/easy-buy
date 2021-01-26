@@ -36,8 +36,8 @@
             <div class="left_m">
                 <div class="left_m_t t_bg1">订单中心</div>
                 <ul>
-                    <li><a href="Member_Order.html" class="now">我的订单</a></li>
-                    <li><a href="Member_Address.html">收货地址</a></li>
+                    <li><a href="jump/goMemberOrder">我的订单</a></li>
+                    <li><a href="jump/goMemberAddress">收货地址</a></li>
                     <li><a href="#">缺货登记</a></li>
                     <li><a href="#">跟踪订单</a></li>
                 </ul>
@@ -45,126 +45,105 @@
             <div class="left_m">
                 <div class="left_m_t t_bg2">会员中心</div>
                 <ul>
-                    <li><a href="Member_User.html">用户信息</a></li>
-                    <li><a href="Member_Collect.html">我的收藏</a></li>
-                    <li><a href="Member_Msg.html">我的留言</a></li>
-                    <li><a href="Member_Links.html">推广链接</a></li>
+                    <li><a href="jump/goMemberUser">用户信息</a></li>
+                    <li><a href="jump/goMemberCollect">我的收藏</a></li>
+                    <li><a href="jump/goMemberMsg">我的留言</a></li>
+                    <li><a href="jump/goMemberLinks">推广链接</a></li>
                     <li><a href="#">我的评论</a></li>
                 </ul>
             </div>
             <div class="left_m">
                 <div class="left_m_t t_bg3">账户中心</div>
                 <ul>
-                    <li><a href="Member_Safe.html">账户安全</a></li>
-                    <li><a href="Member_Packet.html">我的红包</a></li>
-                    <li><a href="Member_Money.html">资金管理</a></li>
+                    <li><a href="jump/goMemberSafe.">账户安全</a></li>
+                    <li><a href="jump/goMemberPacket">我的红包</a></li>
+                    <li><a href="jump/goMemberMoney">资金管理</a></li>
                 </ul>
             </div>
             <div class="left_m">
                 <div class="left_m_t t_bg4">分销中心</div>
                 <ul>
-                    <li><a href="Member_Member.html">我的会员</a></li>
-                    <li><a href="Member_Results.html">我的业绩</a></li>
-                    <li><a href="Member_Commission.html">我的佣金</a></li>
-                    <li><a href="Member_Cash.html">申请提现</a></li>
+                    <li><a href="jump/goMemberMember">我的会员</a></li>
+                    <li><a href="jump/goMemberResults">我的业绩</a></li>
+                    <li><a href="jump/goMemberCommission">我的佣金</a></li>
+                    <li><a href="jump/goMemberCash">申请提现</a></li>
                 </ul>
             </div>
         </div>
         <div class="m_right">
-            <p></p>
-            <div class="mem_tit">我的订单</div>
-            <table border="0" class="order_tab" id="myOrder" style="width:930px; text-align:center; margin-bottom:30px;" cellspacing="0" cellpadding="0">
+            <div class="m_des">
+                <table border="0" style="width:870px; line-height:22px;" cellspacing="0" cellpadding="0">
+                    <tr valign="top">
+                        <td width="115"><img src="images/user.jpg" width="90" height="90" /></td>
+                        <td>
+                            <div class="m_user">TRACY</div>
+                            <p>
+                                等级：注册用户 <br />
+                                <font color="#ff4e00">您还差 270 积分达到 分红100</font><br />
+                                上一次登录时间: 2015-09-28 18:19:47<br />
+                                您还没有通过邮件认证 <a href="#" style="color:#ff4e00;">点此发送认证邮件</a>
+                            </p>
+                            <div class="m_notice">
+                                用户中心公告！
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="mem_t">资产信息</div>
+            <table border="0" class="mon_tab" style="width:870px; margin-bottom:20px;" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="20%">订单号</td>
-                    <td width="25%">下单时间</td>
-                    <td width="15%">订单总金额</td>
-                    <td width="25%">订单状态</td>
-                    <td width="15%">操作</td>
+                    <td width="33%">用户等级：<span style="color:#555555;">普通会员</span></td>
+                    <td width="33%">消费金额：<span>￥200元</span></td>
+                    <td width="33%">返还积分：<span>99R</span></td>
                 </tr>
-                <%--<tr>--%>
-                    <%--<td><font color="#ff4e00">2015092823056</font></td>--%>
-                    <%--<td>2015-09-26   16:45:20</td>--%>
-                    <%--<td>￥456.00</td>--%>
-                    <%--<td>未确认，未付款，未发货</td>--%>
-                    <%--<td>取消订单</td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td><font color="#ff4e00">2015092823056</font></td>--%>
-                    <%--<td>2015-09-26   16:45:20</td>--%>
-                    <%--<td>￥456.00</td>--%>
-                    <%--<td>已确认，已付款，已发货</td>--%>
-                    <%--<td><font color="#ff4e00">已确认</font></td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td><font color="#ff4e00">2015092823056</font></td>--%>
-                    <%--<td>2015-09-26   16:45:20</td>--%>
-                    <%--<td>￥456.00</td>--%>
-                    <%--<td>未确认，未付款，未发货</td>--%>
-                    <%--<td>取消订单</td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td><font color="#ff4e00">2015092823056</font></td>--%>
-                    <%--<td>2015-09-26   16:45:20</td>--%>
-                    <%--<td>￥456.00</td>--%>
-                    <%--<td>已确认，已付款，已发货</td>--%>
-                    <%--<td><font color="#ff4e00">已确认</font></td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td><font color="#ff4e00">2015092823056</font></td>--%>
-                    <%--<td>2015-09-26   16:45:20</td>--%>
-                    <%--<td>￥456.00</td>--%>
-                    <%--<td>未确认，未付款，未发货</td>--%>
-                    <%--<td>取消订单</td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td><font color="#ff4e00">2015092823056</font></td>--%>
-                    <%--<td>2015-09-26   16:45:20</td>--%>
-                    <%--<td>￥456.00</td>--%>
-                    <%--<td>已确认，已付款，已发货</td>--%>
-                    <%--<td><font color="#ff4e00">已确认</font></td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td><font color="#ff4e00">2015092823056</font></td>--%>
-                    <%--<td>2015-09-26   16:45:20</td>--%>
-                    <%--<td>￥456.00</td>--%>
-                    <%--<td>未确认，未付款，未发货</td>--%>
-                    <%--<td>取消订单</td>--%>
-                <%--</tr>--%>
+                <tr>
+                    <td>账户余额：<span>￥200元</span></td></td>
+                    <td>红包个数：<span style="color:#555555;">3个</span></td></td>
+                    <td>红包价值：<span>￥50元</span></td></td>
+                </tr>
+                <tr>
+                    <td colspan="3">订单提醒：
+                        <font style="font-family:'宋体';">待付款(<span>0</span>) &nbsp; &nbsp; &nbsp; &nbsp; 待收货(<span>2</span>) &nbsp; &nbsp; &nbsp; &nbsp; 待评论(<span>1</span>)</font>
+                    </td>
+                </tr>
             </table>
 
-
-            <div class="mem_tit">合并订单</div>
-            <table border="0" class="order_tab" style="width:930px;"  cellspacing="0" cellpadding="0">
+            <div class="mem_t">账号信息</div>
+            <table border="0" class="acc_tab" style="width:870px;" cellspacing="0" cellpadding="0">
+                <%--<tr>--%>
+                <%--<td class="td_l">用户ID： </td>--%>
+                <%--<td>12345678</td>--%>
+                <%--</tr>--%>
                 <tr>
-                    <td width="135" align="right">主订单</td>
-                    <td width="220">
-                        <select class="jj" name="order1">
-                            <option value="0" selected="selected">请选择...</option>
-                            <option value="1">2015092626589</option>
-                            <option value="2">2015092626589</option>
-                            <option value="3">2015092626589</option>
-                            <option value="4">2015092626589</option>
-                        </select>
-                    </td>
-                    <td width="135" align="right">从订单</td>
-                    <td width="220">
-                        <select class="jj" name="order2">
-                            <option value="0" selected="selected">请选择...</option>
-                            <option value="1">2015092626589</option>
-                            <option value="2">2015092626589</option>
-                            <option value="3">2015092626589</option>
-                            <option value="4">2015092626589</option>
-                        </select>
-                    </td>
-                    <td><div class="btn_u"><a href="#">合并订单</a></div></td>
+                    <td class="td_l b_none">身份证号：</td>
+                    <td class="identityCode"></td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4" style="font-family:'宋体'; padding:20px 10px 50px 10px;">
-                        订单合并是在发货前将相同状态的订单合并成一新的订单。 <br />
-                        收货地址，送货方式等以主定单为准。
-                    </td>
+                    <td class="td_l b_none">电  话：</td>
+                    <td class="mobile"></td>
                 </tr>
+                <tr>
+                    <td class="td_l">邮   箱： </td>
+                    <td class="email"></td>
+                </tr>
+                <tr>
+                    <td class="td_l b_none">注册时间：</td>
+                    <td class="createTime"></td>
+                </tr>
+                <tr>
+                    <td class="td_l">完成订单：</td>
+                    <td class="orderCount"></td>
+                </tr>
+                <%--<tr>--%>
+                <%--<td class="td_l b_none">邀请人：</td>--%>
+                <%--<td>邀请人</td>--%>
+                <%--</tr>--%>
+                <%--<tr>--%>
+                <%--<td class="td_l">登录次数：</td>--%>
+                <%--<td>3</td>--%>
+                <%--</tr>--%>
             </table>
 
 

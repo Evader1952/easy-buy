@@ -123,13 +123,13 @@
 
             <span class="ss">
             	<div class="ss_list">
-                	<a href="#">收藏夹</a>
+                	<a href="#">后台管理</a>
                     <div class="ss_list_bg">
                     	<div class="s_city_t"></div>
                         <div class="ss_list_c">
                         	<ul>
-                            	<li><a href="#">我的收藏夹</a></li>
-                                <li><a href="#">我的收藏夹</a></li>
+                            	<li><a href="/jump/goMemberAddress">收货地址</a></li>
+                                <li><a href="/jump/Member">用户信息</a></li>
                             </ul>
                         </div>
                     </div>
@@ -179,29 +179,25 @@
         <div class="i_car">
             <div class="car_t">购物车 [ <span>3</span> ]</div>
             <div class="car_bg">
-                <!--Begin 购物车未登录 Begin-->
-                <div class="un_login">还未登录！<a href="login.jsp" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
-                <!--End 购物车未登录 End-->
+                <c:if test="${user == null}">
+                    <!--Begin 购物车未登录 Begin-->
+                    <div class="un_login">还未登录！<a href="login.jsp" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
+                    <!--End 购物车未登录 End-->
+                </c:if>
                 <!--Begin 购物车已登录 Begin-->
-                <ul class="cars">
-                    <li>
-                        <div class="img"><a href="#"><img src="images/car1.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="#"><img src="images/car2.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="#"><img src="images/car2.jpg" width="58" height="58" /></a></div>
-                        <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                </ul>
-                <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-                <div class="price_a"><a href="#">去购物车结算</a></div>
+                <c:if test="${user != null}">
+                    <ul class="cars">
+                        <c:forEach items="${sessionScope.shopcart}" var="item">
+                            <li>
+                                <div class="img"><a href="#"><img src="images/${item.fileName}" width="58" height="58" /></a></div>
+                                <div class="name"><a href="#">${item.name}</a></div>
+                                <div class="price"><font color="#ff4e00">￥${item.price}</font> X${item.count}</div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                    <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span class="total">${sessionScope.total}</span></div>
+                    <div class="price_a"><a href="/jump/goCartList">去购物车结算</a></div>
+                </c:if>
                 <!--End 购物车已登录 End-->
             </div>
         </div>

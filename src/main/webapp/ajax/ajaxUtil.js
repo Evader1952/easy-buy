@@ -22,13 +22,13 @@ function ajaxGet(url,data,fun){
         },
         complete : function(XMLHttpRequest, textStatus) {
             // 通过XMLHttpRequest取得响应头，sessionstatus
-			console.log("comp")
             var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus");
             if (sessionstatus == "TIMEOUT") {
                 var win = window;
                 while (win != win.top){
                     win = win.top;
                 }
+                alert("请先登录")
                 win.location.href= XMLHttpRequest.getResponseHeader("path");
             }
         }
@@ -55,7 +55,7 @@ function ajaxPost(url,data,funName){
         	console.error(textStatus);
         	console.error(XMLHttpRequest.status);
         	console.error(XMLHttpRequest.readyState);
-        	return false ;
+        //	return false ;
 	    },
         complete : function(XMLHttpRequest, textStatus) {
             // 通过XMLHttpRequest取得响应头，sessionstatus
@@ -65,6 +65,7 @@ function ajaxPost(url,data,funName){
                 while (win != win.top){
                     win = win.top;
                 }
+                alert("请先登录")
                 win.location.href= XMLHttpRequest.getResponseHeader("path");
             }
         }

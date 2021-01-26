@@ -71,7 +71,7 @@
                     </tr>
                     <tr height="50">
                         <td align="right"><font color="#ff4e00">*</font>&nbsp;登录用户名 &nbsp;</td>
-                        <td><input type="text" value="" class="l_user" name="loginname"/></td>
+                        <td><input type="text" value="" class="l_user" name="loginName"/></td>
                     </tr>
                     <tr height="50">
                         <td align="right"><font color="#ff4e00">*</font>&nbsp;密码 &nbsp;</td>
@@ -83,7 +83,7 @@
                     </tr>
                     <tr height="50">
                         <td align="right"><font color="#ff4e00">*</font>&nbsp;真实姓名 &nbsp;</td>
-                        <td><input type="text" value="" class="l_email" name="username"/></td>
+                        <td><input type="text" value="" class="l_email" name="userName"/></td>
                     </tr>
                     <tr height="50">
                         <td align="right">性别 &nbsp;</td>
@@ -101,7 +101,7 @@
                     </tr>
                     <tr height="50">
                         <td align="right">身份证号 &nbsp;</td>
-                        <td><input type="text" value="" class="l_num" name="identitycode"/></td>
+                        <td><input type="text" value="" class="l_num" name="identityCode"/></td>
                     </tr>
 
                     <tr height="60">

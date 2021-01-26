@@ -239,7 +239,7 @@
 
     <script>
         jq(function () {
-            jq(".leftNav").hide();
+            jq(".leftNav").show();
         })
 
     </script>

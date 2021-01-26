@@ -7,9 +7,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author lvlu
- * @date 2019-03-01 17:05
- **/
+ *
+ *
+ * @Author: mapei
+ * @Date: 2021/1/25 10:39
+ */
 public class RequestContext {
 
     private static final String CURRENTUSER = "Current-User";

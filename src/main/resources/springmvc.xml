@@ -40,9 +40,12 @@
             </set>
         </property>
     </bean>-->
+    <!--拦截器配置-->
     <mvc:interceptors>
         <mvc:interceptor>
+            <!--拦截-->
             <mvc:mapping path="/**" />
+            <!--不拦截-->
             <mvc:exclude-mapping path="/js/**"/>
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/images/**"/>

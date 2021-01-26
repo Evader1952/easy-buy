@@ -373,7 +373,6 @@
 
 
     jq("body").on("click", ".createOrder", function () {
-        alert("创建")
         // data: JSON.stringify({"loginname": parameter}),
         //TODO 这里地址需要取选择的
         ajaxPost("order/createOrder",{addressId:"12"},function b(res) {

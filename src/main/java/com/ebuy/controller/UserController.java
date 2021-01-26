@@ -49,13 +49,15 @@ public class UserController {
      */
     @RequestMapping("/reg")
     @ResponseBody
-    public Response reg(User user) {
+    public Response reg(User user,HttpSession session) {
         //前台用户：类型为0
         user.setType(0);
         String reason = userService.reg(user);
         if (reason != null) {
             return Response.fail(reason);
         }
+        userService.queryByLoginName(user.getLoginName());
+        session.setAttribute("user", user);
         return Response.ok("注册成功");
     }
 

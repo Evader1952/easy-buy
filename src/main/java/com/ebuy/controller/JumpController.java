@@ -43,4 +43,10 @@ public class JumpController {
         return "Member_Order";
     }
 
+    @RequestMapping("/goMemberAddress")
+    public String goMemberAddress(){
+        return "Member_Address";
+    }
+
+
 }

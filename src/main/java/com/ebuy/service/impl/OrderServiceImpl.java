@@ -120,7 +120,9 @@ public class OrderServiceImpl implements OrderService {
         order.setLoginName(user.getLoginName());
         //页面选择的地址
         UserAddress userAddress = userAddressService.queryByUidAndAid(user.getId(), addressId);
-        order.setUserAddress(userAddress.getAddress());
+        if (!DataUtil.isEmpty(userAddress)){
+            order.setUserAddress(userAddress.getAddress());
+        }
         order.setCost(total);
         order.setCreateTime(new Date());
         order.setStatus(OrderStatusEnum.WAIT.toCode());

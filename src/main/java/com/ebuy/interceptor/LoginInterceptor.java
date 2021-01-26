@@ -17,8 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * 登录拦截器
@@ -42,7 +40,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         return pathMatcher.match("/login.jsp", request.getServletPath())
                 || pathMatcher.match("/reg.jsp", request.getServletPath())
                 || pathMatcher.match("/index.jsp", request.getServletPath())
-                || pathMatcher.match("/user/login", request.getServletPath())
+                || pathMatcher.match("/user/**", request.getServletPath())
                 || pathMatcher.match("/index/**", request.getServletPath())
                 || pathMatcher.match("/news/**", request.getServletPath());
     }
@@ -99,17 +97,15 @@ public class LoginInterceptor implements HandlerInterceptor {
                 return true;
             } else {
                 //如果是ajax
-                String header = request.getHeader("x-requested-with");
                 if (request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")){
                     response.setHeader("SESSIONSTATUS", "TIMEOUT");
                     response.setHeader("path", request.getContextPath()+"/login.jsp");
-                    // FORBIDDEN，forbidden。也就是禁止、403
+                    // FORBIDDEN。也就是禁止、403
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                 }else {
                     response.sendRedirect(dispatchUrl);
 
                 }
-//                response.sendRedirect(request.getContextPath()+"login.jsp");
                 return false;
             }
         }

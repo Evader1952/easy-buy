@@ -129,13 +129,13 @@
 
                 <span class="ss">
             	<div class="ss_list">
-                	<a href="#">收藏夹</a>
+                	<a href="#">后台管理</a>
                     <div class="ss_list_bg">
                     	<div class="s_city_t"></div>
                         <div class="ss_list_c">
                         	<ul>
-                            	<li><a href="#">我的收藏夹</a></li>
-                                <li><a href="#">我的收藏夹</a></li>
+                            	<li><a href="/jump/goMemberAddress">收货地址</a></li>
+                                <li><a href="/jump/Member">用户信息</a></li>
                             </ul>
                         </div>
                     </div>
